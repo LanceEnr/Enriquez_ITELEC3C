@@ -20,12 +20,13 @@ class CategoryController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
         ]);
     
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('category_images');
-        } else {
-            $imagePath = null;
-        }
+      // Handle image upload
+if ($request->hasFile('image')) {
+    $imagePath = $request->file('image')->store('category_images', 'public_uploads');
+} else {
+    $imagePath = null;
+}
+
     
         Category::create([
             'cat_name' => $request->cat_name,
@@ -51,7 +52,7 @@ class CategoryController extends Controller
     
         // Handle image upload
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('category_images');
+            $imagePath = $request->file('image')->store('category_images', 'public_uploads');
             $category->image = $imagePath; // Update the image path in the database
         }
     

@@ -30,11 +30,12 @@
                                         <td>{{ $category->user_id }}</td>
                                         <td>{{ $category->created_at }}</td>
                                         <td>
-                                            @if ($category->image)
-                                                <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="category-image">
-                                            @else
-                                                No Image
-                                            @endif
+                                        @if ($category->image)
+    <img src="{{ asset($category->image) }}" alt="Category Image" class="category-image">
+@else
+    No Image
+@endif
+
                                         </td>
                                         <td><a href="{{ url('edit_category', $category->id) }}"><i
                                                     class="bi bi-pencil-square"></i></a></td>

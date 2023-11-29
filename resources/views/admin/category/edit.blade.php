@@ -31,10 +31,11 @@
                         <div class="mb-3">
                             <label for="image">Current Category Image:</label>
                             @if ($category->image)
-                                <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="category-image">
-                            @else
-                                No Image
-                            @endif
+    <img src="{{ asset($category->image) }}" alt="Category Image" class="category-image">
+@else
+    No Image
+@endif
+
                         </div>
 
                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
