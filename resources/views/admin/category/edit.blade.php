@@ -10,21 +10,35 @@
 
             <div class="col-md-4">
                 <div class="card p-3">
-                    <form action="{{ url('/edit_category_confirm', $category->id) }}" method="POST">
+                    <form action="{{ url('/edit_category_confirm', $category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <h3>Edit {{ $category->cat_name }}</h3>
                             <label for="cat_name">Category Name</label>
-                            <input type="text" class="form-control" name="cat_name"
-                                placeholder="Enter category name" value="{{$category->cat_name}}">
+                            <input type="text" class="form-control" name="cat_name" placeholder="Enter category name" value="{{ $category->cat_name }}">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="image">Category Image</label>
+                            <input type="file" class="form-control" name="image">
+                        </div>
+
                         <div class="mb-3">
                             <label for="user_id">User ID</label>
-                            <input type="number" class="form-control" name="user_id" placeholder="Enter User ID"
-                                min="1" value="{{$category->user_id}}">
+                            <input type="number" class="form-control" name="user_id" placeholder="Enter User ID" min="1" value="{{ $category->user_id }}">
                         </div>
+
+                        <div class="mb-3">
+                            <label for="image">Current Category Image:</label>
+                            @if ($category->image)
+                                <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="category-image">
+                            @else
+                                No Image
+                            @endif
+                        </div>
+
                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                        <a href="{{route('AllCat')}}" class="btn btn-secondary">Back</a>
+                        <a href="{{ route('AllCat') }}" class="btn btn-secondary">Back</a>
                     </form>
                 </div>
             </div>
